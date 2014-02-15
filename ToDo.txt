@@ -1,0 +1,7 @@
+To Do:
+
+- fix lookup relationships from blocks to ranges
+- make plain word lookup/search function
+- make font select option
+- look for online meanings of individual chars
+- make a "Get" function to make a char code avail to outside caller
