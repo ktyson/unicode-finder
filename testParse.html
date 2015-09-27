@@ -1,0 +1,71 @@
+<html>
+<head>
+
+<script src="jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+
+$(document).ready(function() {
+
+	$("#go").on("click", function() {
+		parseOne($("#inputContent").val());
+	});
+
+
+
+});
+
+function parseOne(rawText) {
+
+	var rex = /[^a-z]/gi;
+	var arrOne = rawText.split(rex);
+	arrOne.clean("");
+	$.each(arrOne, function(idx, val) {
+		
+		$("#parsedContent").append("<span class='elem'>" + val + "</span>" );
+
+	});
+
+
+}
+
+
+Array.prototype.clean = function(deleteValue) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] == deleteValue) {         
+      this.splice(i, 1);
+      i--;
+    }
+  }
+  return this;
+};
+
+</script>
+
+<style>
+
+
+#parsedContent {
+
+	width: 300px;
+
+}
+
+.elem {
+
+	margin-right: 1em;
+
+}
+
+</style>
+
+
+</head>
+<body>
+
+<textarea id="inputContent" ></textarea>
+<input id="go" type="button" value="Go"></input>
+<div id="parsedContent" ></div>
+
+
+</body>
+</html>
