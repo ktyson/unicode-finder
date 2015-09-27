@@ -4,8 +4,6 @@ var http = require("http"),
     fs = require("fs"),
     port = process.argv[2] || 8080;
 
-var pts = require ("./makegrid.js");
-
 
 http.createServer(function(request, response) {
 
@@ -16,30 +14,7 @@ var uri = url.parse(request.url).pathname,
 
 console.log("ok", uri, filename, pathkey);
 
-      if (pathkey == "make") {
-        var incoming = '';
 
-        request.on('data', function(data) {
-
-          incoming += data;
-console.log(" we got: " + incoming);
-        
-        });
-
-        request.on("end", function() {
-
-           if(incoming) {
-
-			  	var ptsArr = pts.makeGrid();
-				
-              	response.end(JSON.stringify(ptsArr));           
-            
-          } 
-                
-        });
-
-
-    } else {
 
 
       //STATIC FILES
@@ -51,7 +26,7 @@ console.log(" we got: " + incoming);
 		return;
 	  }
 	  	  
-      if (fs.statSync(filename).isDirectory()) filename += '/index.html';
+      if (fs.statSync(filename).isDirectory()) filename += '/unicode_Explorer.html';
 
       fs.readFile(filename, "binary", function(err, file) {
         if(err) {        
@@ -67,7 +42,6 @@ console.log(" we got: " + incoming);
       });
 
 
-    }
 
 }).listen(parseInt(port, 10));
 
